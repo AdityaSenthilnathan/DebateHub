@@ -192,8 +192,9 @@ export default function Forums() {
         },
       ],
     }));
-
-    commentInput.value = ""; // Clear the comment input
+    if(commentInput){
+    commentInput.value = ""; 
+    }// Clear the comment input
   };
 
   // Handle "See More" button click to show more comments
