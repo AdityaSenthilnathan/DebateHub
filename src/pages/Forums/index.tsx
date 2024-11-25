@@ -10,15 +10,19 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../comp
 import React from "react";
 import Header from "../../components/Header";
 import PageLayout from "../../components/PageLayout";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../lib/firebase"; // Ensure you import your auth instance
 
 interface Post {
   id: string;
   title: string;
   content: string;
   createdAt: { seconds: number }; // Firestore timestamp format
+  user: string; // User who posted the message
 }
 
 export default function Forums() {
+  const [user, loadingUser, errorUser] = useAuthState(auth); // Accessing the current logged-in user
   const [currentForum, setCurrentForum] = useState<string | null>(null); // Currently selected forum
   const [posts, setPosts] = useState<Post[]>([]); // List of posts
   const [loading, setLoading] = useState<boolean>(false);
@@ -62,6 +66,11 @@ export default function Forums() {
       return;
     }
 
+    if (!user) {
+      setError("You must be logged in to post.");
+      return;
+    }
+
     setLoading(true);
     try {
       const postsRef = collection(db, "forums", currentForum!, "posts");
@@ -69,6 +78,7 @@ export default function Forums() {
         title: titleRef.current?.value,
         content: contentRef.current?.value,
         createdAt: new Date(),
+        user: user.displayName || user.email, // Storing the user's name or email
       });
       titleRef.current.value = ""; // Clear title input
       contentRef.current.value = ""; // Clear content input
@@ -84,7 +94,7 @@ export default function Forums() {
   const ForumsPage = () => (
     <PageLayout darkMode={darkMode}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 min-h-screen">
         <h2 className="text-3xl font-bold mb-6">Debate Forums</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {["Lincoln-Douglas", "Parliamentary", "Policy", "Public Forum"].map((format) => (
@@ -106,7 +116,7 @@ export default function Forums() {
   const ForumPage = () => (
     <PageLayout darkMode={darkMode}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 min-h-screen">
         <h2 className="text-3xl font-bold mb-6">{currentForum} Forum</h2>
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-4">Start a New Discussion</h3>
@@ -133,7 +143,13 @@ export default function Forums() {
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
                 </CardHeader>
-                <CardContent>{post.content}</CardContent>
+                <CardContent>
+                  {post.content}
+                  <div className="text-sm text-gray-500 mt-2">
+                    Posted by {post.user} on{" "}
+                    {new Date(post.createdAt.seconds * 1000).toLocaleString()}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
