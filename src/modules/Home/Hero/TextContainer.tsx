@@ -5,6 +5,7 @@ import Modal from "../../../components/Modal";
 const TextContainer = () => {
   const [open, setOpen] = useState(false);
   console.log(open, "open");
+
   return (
     <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
       <h1 className="text-4xl text-red-500 font-bold tracking-tight sm:text-6xl">
@@ -22,7 +23,16 @@ const TextContainer = () => {
           handleClick={() => setOpen(!open)}
         />
       </div>
-      <Modal open={open} setOpen={setOpen} />
+
+      <Modal open={open} setOpen={setOpen}>
+        <div className="p-4">
+          <h2 className="text-2xl font-bold">More Information</h2>
+          <p className="mt-4">
+            Here you can add more details about the Baller Boutique products or
+            anything you'd like to show inside the modal.
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 };

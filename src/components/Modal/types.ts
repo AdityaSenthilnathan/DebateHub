@@ -1,5 +1,5 @@
 export type ModalProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  children: React.ReactNode; // Ensuring 'children' is required
+  children?: React.ReactNode; // Make children optional
 };
