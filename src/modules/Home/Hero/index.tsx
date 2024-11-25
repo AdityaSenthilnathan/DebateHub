@@ -1,3 +1,5 @@
+
+
 const Hero = () => {
   return (
     <div className="relative isolate">
@@ -5,6 +7,7 @@ const Hero = () => {
       <svg
         className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
         aria-hidden="true"
+        role="presentation"
       >
         <defs>
           <pattern
@@ -15,15 +18,9 @@ const Hero = () => {
             y={-1}
             patternUnits="userSpaceOnUse"
           >
-            <path d="M.5 200V.5H200" fill="none" />
+            <path d="M0 200V0H200" fill="none" />
           </pattern>
         </defs>
-        <svg x="50%" y={-1} className="overflow-visible fill-gray-50">
-          <path
-            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-            strokeWidth={0}
-          />
-        </svg>
         <rect
           width="100%"
           height="100%"
@@ -53,7 +50,7 @@ const Hero = () => {
               <img
                 className="w-full object-cover rounded-lg shadow-lg"
                 src="https://www.shutterstock.com/image-vector/debate-before-vote-male-woman-600nw-2184567945.jpg"
-                alt="Debate illustration"
+                alt="Illustration of two people engaged in a debate"
               />
             </div>
           </div>
@@ -141,6 +138,5 @@ const Hero = () => {
     </div>
   );
 };
-
 
 export default Hero;

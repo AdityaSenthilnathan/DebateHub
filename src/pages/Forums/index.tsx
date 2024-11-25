@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { collection, addDoc, query, onSnapshot, doc, getDoc, setDoc, updateDoc, increment, arrayUnion, arrayRemove, getDocs } from "firebase/firestore";
+import { collection, addDoc, query, onSnapshot, doc, getDoc, updateDoc, increment, arrayUnion, arrayRemove, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { Button2 } from "../../components/Button2";
 import { Input2 } from "../../components/Input2";
@@ -12,7 +12,7 @@ import Header from "../../components/Header";
 import PageLayout from "../../components/PageLayout";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../lib/firebase";
-import { deleteDoc } from "firebase/firestore";
+//import { deleteDoc } from "firebase/firestore";
 
 interface Post {
   id: string;
@@ -46,7 +46,7 @@ export default function Forums() {
   const commentRefs = useRef<{ [postId: string]: React.RefObject<HTMLInputElement> }>({}); // Ref for comment inputs
 
   // Get user authentication state
-  const [user, loadingUser] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   // Fetch posts when a forum is selected
   useEffect(() => {

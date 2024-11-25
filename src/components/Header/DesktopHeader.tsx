@@ -6,7 +6,7 @@ import MenuIcon from "./MenuIcon";
 import { navigation } from "./helper"; // Ensure this import is correct and `navigation` is defined
 import Toggle from "../Toggle";
 import SignIn from "./SignIn";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
