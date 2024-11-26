@@ -1,1 +1,0 @@
-import{j as s}from"./index-C8EDZPUb.js";const e="/assets/logo-6ZkFrJlJ.png",t=({children:l,darkMode:o})=>s.jsx("html",{className:`h-full ${o?"dark-mode":"light-mode"}`,children:s.jsx("body",{className:"h-full",children:l})});export{t as P,e as l};
