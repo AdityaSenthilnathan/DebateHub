@@ -1,0 +1,1 @@
+import{j as r,N as e,a as o}from"./index-C8EDZPUb.js";import{a as u}from"./index-CibO5izo.js";import{u as i}from"./index.esm-Dj6ELGzU.js";const d=({children:s})=>{const[t,a]=i(u);return a?r.jsx("div",{children:"Loading..."}):!t||t===null?r.jsx(e,{to:o.Login}):s};export{d as default};
