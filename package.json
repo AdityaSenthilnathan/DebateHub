@@ -22,7 +22,8 @@
     "react-dom": "^18.3.1",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.21.2",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
